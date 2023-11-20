@@ -5,16 +5,19 @@ const Book = require('../models/Book');
 const bookDoctor = {};
 
 bookDoctor.getBooks = function(req, res, next){
-    let queryObject = {};
 
-    if(req.query.title){
-        queryObject = {title: req.query.title}
-    }
+  let queryObject = {};
 
-    Book.find(queryObject)
-        .then(data => res.status(200).send(data))
-        .catch(err => next(err));
-}
+  if (req.query.title) {
+      queryObject = { title: req.query.title };
+  }
+
+  console.log('REQUEST BODY: ', req.body)
+
+  Book.find(queryObject)
+      .then(data => res.status(200).send(data))
+      .catch(err => next(err));
+};
 
 bookDoctor.postBooks = function(req, res, next){
     const data = req.body;
