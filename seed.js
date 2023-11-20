@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 mongoose.connect(process.env.DATABASE_URL);
-
+console.log('connected to server in seed.js');
 const Book = require('./models/Book');
 
 async function seed() {
@@ -15,6 +15,8 @@ async function seed() {
     "The remote island of Masquapaug has not seen a dragon in many generations—until fifteen-year-old Anequs finds a dragon’s egg and bonds with its hatchling. Her people are delighted, for all remember the tales of the days when dragons lived among them and danced away the storms of autumn, enabling the people to thrive. To them, Anequs is revered as Nampeshiweisit—a person in a unique relationship with a dragon.",
     status: true
   })
+
+  console.log(myBook);
 
   await myBook.save()
     .then(() => console.log('Saved Dragon to DB'))
