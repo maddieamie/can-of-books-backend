@@ -20,8 +20,8 @@ bookDoctor.getBooks = function(req, res, next){
 };
 
 bookDoctor.postBooks = function(req, res, next){
-    const data = req.body;
-    Book.create(data)
+    const reqBook = req.body;
+    Book.create(reqBook)
         .then(createdBook => res.status(201).send(createdBook))
         .catch(err => next(err));
 }
