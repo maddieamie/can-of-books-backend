@@ -29,6 +29,7 @@ app.get('/', (req, res, next) => res.status(200).send('Default Route working'));
 app.get('/books', BookDoctor.getBooks);
 app.post('/books', BookDoctor.postBooks);
 app.delete('/books/:id', BookDoctor.deleteBooks);
+app.put('/books/:id', BookDoctor.putBooks);
 
 app.get('*', (req, res, next) => res.status(404).send('Resource not Found'));
 

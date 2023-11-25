@@ -33,4 +33,14 @@ bookDoctor.deleteBooks = function(req, res, next){
         .catch(err => next(err));
 }
 
+  bookDoctor.putBooks = function(req, res, next){
+    const { title, author, genre, description, status } = req.body;
+    const { id } = req.params;
+
+    Book.findByIdAndUpdate(id, { title, author, genre, description, status }, { new: true, overwrite: true })
+        .then(updatedBook => res.status(200).send(updatedBook))
+        .catch(err => next(err));
+}
+
+
 module.exports = bookDoctor;
