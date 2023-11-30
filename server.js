@@ -16,7 +16,11 @@ app.use(cors());
 app.use(express.json())
 
 const PORT = process.env.PORT || 3051;
-mongoose.connect(process.env.DATABASE_URL);
+const username=process.env.username;
+const password=process.env.password;npm 
+const clusterName=process.env.clusterName;
+console.log(username, password, clusterName);
+mongoose.connect(`mongodb+srv://${username}:${password}@${clusterName}.mongodb.net/?retryWrites=true&w=majority`);
 
 
 const db = mongoose.connection;
