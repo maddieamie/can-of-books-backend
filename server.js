@@ -7,6 +7,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const BookDoctor = require('./functionmodules/BookDoctor');
+const verifyUser= require('./functionmodules/authorize');
 
 
 const app = express();
@@ -17,10 +18,9 @@ app.use(express.json())
 
 const PORT = process.env.PORT || 3051;
 const username=process.env.username;
-const password=process.env.password;npm 
-const clusterName=process.env.clusterName;
-console.log(username, password, clusterName);
-mongoose.connect(`mongodb+srv://${username}:${password}@${clusterName}.mongodb.net/?retryWrites=true&w=majority`);
+const password=process.env.password;
+const clusterName=process.env.clusterName; 
+mongoose.connect(`mongodb+srv://${username}:${password}@${clusterName}.wwybe7x.mongodb.net/?retryWrites=true&w=majority`);
 
 
 const db = mongoose.connection;
@@ -29,6 +29,8 @@ db.on('error', console.error.bind(console, 'connection error to MDB'));
 db.once('open', () => console.log('Mongoose is connected'));
 
 app.get('/', (req, res, next) => res.status(200).send('Default Route working'));
+
+app.use(verifyUser);
 
 app.get('/books', BookDoctor.getBooks);
 app.post('/books', BookDoctor.postBooks);

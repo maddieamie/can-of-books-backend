@@ -9,7 +9,8 @@ const bookSchema = new Schema({
   author: String,
   genre: String,
   description: String,
-  status: Boolean
+  status: Boolean,
+  email: String
 });
 
 const Book = mongoose.model('Book', bookSchema);
