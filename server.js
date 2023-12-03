@@ -7,7 +7,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const BookDoctor = require('./functionmodules/BookDoctor');
-const verifyUser= require('./functionmodules/authorize');
+const verifyUser= require('./functionmodules/authorize.js');
 
 
 const app = express();
@@ -36,6 +36,12 @@ app.get('/books', BookDoctor.getBooks);
 app.post('/books', BookDoctor.postBooks);
 app.delete('/books/:id', BookDoctor.deleteBooks);
 app.put('/books/:id', BookDoctor.putBooks);
+app.get('/user', handleGetUser);
+
+function handleGetUser(req, res) {
+    console.log('Getting the user');
+    res.send(req.user);
+  }
 
 app.get('*', (req, res, next) => res.status(404).send('Resource not Found'));
 
